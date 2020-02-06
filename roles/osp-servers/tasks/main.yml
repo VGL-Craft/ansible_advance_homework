@@ -2,45 +2,43 @@
 
 # tasks file for osp.servers
 
-#Create new server instances and attaches them a network and passes metadata to the instance
-- name: Create a server instance
+- name: Create new server instances and attaches them a network and passes metadata to the instance
   os_server:
     cloud: ospcloud
-    name: frontend
-    image: rhel-guest
-    meta: group=frontends,deployment_name=dev
-    flavor: m2.small
-    security_groups: frontend_servers 
-    key_name: ansible_ssh
-    wait: yes
+    name: "{{ item.value.name }}"
+    state: "{{ item.value.state }}"
+    image: "{{ item.value.image }}"
+    key_name: "{{ item.value.key_name }}"
+    flavor: "{{ item.value.flavor }}"
+    security_groups: "{{ item.value.security_group }}"
+    meta:
+     group: "{{ item.value.meta_group }}"
+     deployment_name: "{{ item.value.meta_deployment_name }}"
     nics:
-    - net-name: int_network
-    userdata: |
+     - net-name: int_network
+    wait: yes
+    user_data: |
       #!/bin/bash
       curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
       cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
       curl -o /tmp/internal.repo http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
       cp /tmp/internal.repo /etc/yum.repos.d/internal.repo
-  register: instanceip
+  with_dict: "{{ osp_servers }}"
 
 
-#name: Add floating IP to Servers
-- name: Add floating IP to frontend
+- name: Add floating IP to Servers
   os_floating_ip:
-    cloud: ospcloud
-    state: present
-    reuse: yes
-    server: frontend
-    network: ext_network
-    wait: true
-    timeout: 180
+   cloud: ospcloud
+   state: "{{ item.value.state }}"#name: Wait for server to be available
+   reuse: yes
+   server: "{{ item.value.name }}"
+   network: ext_network
+   wait: true
+   timeout: 180
   register: instancefloatingip
-
-- name: Show "{{ instanceip }}" public IP
-  debug: var=instancefloatingip.floating_ip.floating_ip_address
+  with_dict: "{{ osp_servers }}"
 
 
-#name: Wait for server to be available
 - name: Wait for frontend to be available
   wait_for:
     host: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
@@ -48,4 +46,3 @@
     search_regex: OpenSSH
     timeout: 600
   delegate_to: "{{ inventory_hostname }}"
-
