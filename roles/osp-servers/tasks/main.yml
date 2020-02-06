@@ -1,3 +1,4 @@
+---
 - name: Create new server instances and attaches them a network and passes metadata to the instance
   os_server:
     cloud: ospcloud
@@ -8,8 +9,8 @@
     flavor: "{{ item.value.flavor }}"
     security_groups: "{{ item.value.security_group }}"
     meta:
-     group: frontends
-     deployment_name: QA
+     group: "{{ item.value.meta_group }}"
+     deployment_name: "{{ item.value.meta_deployment_name }}"
     nics:
      - net-name: int_network
     wait: yes
@@ -20,12 +21,12 @@
       curl -o /tmp/internal.repo http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
       cp /tmp/internal.repo /etc/yum.repos.d/internal.repo
   with_dict: "{{ osp_servers }}"
- 
- 
+
+
 - name: Add floating IP to Servers
   os_floating_ip:
    cloud: ospcloud
-   state: "{{ item.value.state }}"
+   state: "{{ item.value.state }}"#name: Wait for server to be available
    reuse: yes
    server: "{{ item.value.name }}"
    network: ext_network
@@ -33,11 +34,3 @@
    timeout: 180
   register: instancefloatingip
   with_dict: "{{ osp_servers }}"
-
-- name: Wait for frontend to be available
-  wait_for:
-    host: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
-    port: 22
-    search_regex: OpenSSH
-    timeout: 600
-  delegate_to: "{{ inventory_hostname }}"
