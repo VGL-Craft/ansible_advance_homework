@@ -8,8 +8,8 @@
     flavor: "{{ item.value.flavor }}"
     security_groups: "{{ item.value.security_group }}"
     meta:
-     group: "{{ item.value.meta_group }}"
-     deployment_name: "{{ item.value.meta_deployment_name }}"
+     group: frontends
+     deployment_name: QA
     nics:
      - net-name: int_network
     wait: yes
