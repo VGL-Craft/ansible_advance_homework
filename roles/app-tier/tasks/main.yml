@@ -1,7 +1,6 @@
 ---
 # tasks file for app-tier
 
----
 - name: install tomcat
   package:
     name: tomcat
