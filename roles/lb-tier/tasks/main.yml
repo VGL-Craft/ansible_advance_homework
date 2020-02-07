@@ -1,6 +1,4 @@
 ---
-# tasks file for lb-tier
-
 - name: install HAProxy
   yum:
     name=haproxy state=latest
