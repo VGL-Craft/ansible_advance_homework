@@ -1,10 +1,16 @@
 ---
+
+# APP agregada a tres niveles:
+# Instalación de Tomcat, directorio Tomcat Ansible, copia static index. html a Tomcat webapps (Ansible) index.html, inicio de Tomcat,
+# directorio Ansible webapps, copia static index.html a Tomcat webapps Ansible/index.html. 
+
 # tasks file for app-tier
 
 - name: install tomcat
   package:
     name: tomcat
     state: latest
+
 - name: enable tomcat at boot
   service:
     name: tomcat

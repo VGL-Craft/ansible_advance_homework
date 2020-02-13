@@ -1,4 +1,9 @@
 ---
+
+# Base-config: Plantilla de Repositorio a tres niveles.
+# Habilita el repositorio (extension.repo).
+
+# Setup yum repo and base packages role.
 # tasks file for base-config
 
 - name: enable repos

@@ -1,3 +1,6 @@
+# Prueba de humo (smoke test) sobre el entorno de control de calidad (QA) para la APP a tres niveles.
+# En caso de que la prueba de humo fallase, lanzar el playbook: site-osp-delete.yml (destruye el QA en RHOSP).
+
 - hosts: workstation
   gather_facts: false
   tasks:

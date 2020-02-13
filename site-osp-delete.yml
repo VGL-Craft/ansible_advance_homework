@@ -1,4 +1,7 @@
+# Playbook que elimina las instancias OSP.
+
 - hosts: workstation
   become: yes
   roles:
+    #Llama al role osp-instance-delete:
     - osp-instance-delete

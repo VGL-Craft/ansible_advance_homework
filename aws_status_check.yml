@@ -1,3 +1,7 @@
+# Playbook que comprueba si las instancias de AWS están o no activas.
+
+# Modificamos el filtro de instancia con nuestro correo:
+
 - hosts: tag:instance_filter=three-tier-app-v.a.gonzalez.lopez@accenture.com
   gather_facts: false
   tasks:

@@ -1,4 +1,9 @@
+# Playbook to provision RHOSP (Red Hat OpenStack Platform) instances to support the deployment of a three-tier application using the network
+# details and flavor specified in the previous section.
+# To connect RHOSP hosted instances use: openstack.pub and openstack.pem 
+
 - hosts: workstation
   become: yes
   roles:
+    # Llama al role osp-servers (provision osp instance role)
     - osp-servers

@@ -1,10 +1,16 @@
+# Playbook que implementa la APP a tres niveles.
+# Configure your instance to use the organization's local yum repository. 
+# [rhel-7-server ...]
+
 - hosts: workstation
   gather_facts: true
+
+  # Llamada al role osp-facts el cual genera el inventario para OSP (OpenStack).
+  # Generate in memory inventory for OSP instances role.
   roles:
   - name: osp-facts
 
 # Setup front-end load balancer tier
-
 
 - name: setup load-balancer tier
   hosts: frontends

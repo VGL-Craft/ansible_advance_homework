@@ -1,4 +1,7 @@
-# Playbook to setup workstation and create osp network, router, SG and ssh keypair
+# Playbook to setup workstation and create osp network, router, SG and ssh keypair.
+
+# Playbook que configura la workstation y crea la red OSP, el grupo de seguridad y el par de claves ssh.
+# Llama al role setup-worstation 
 
 - hosts: localhost
   tasks:
@@ -11,7 +14,10 @@
 - hosts: workstation
   become: yes
   roles:
-    - setup-workstation
+    # Configuración de la workstation: crea el fichero clouds.yml e instala los paquetes.
+    - setup-workstation 
 
+# Importa el siguiente playbook para instalar el nodo aislado.
+# The isolated node helps you in provisioning OpenStack instances and deploying a three-tier application on RHOSP (Red Hat OpenStack Platform) instances. 
 - import_playbook: site-install-isolated-node.yml 
 
