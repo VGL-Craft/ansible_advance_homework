@@ -2,7 +2,7 @@
 
 # Modificamos el filtro de instancia con nuestro correo:
 
-- hosts: tag:instance_filter=three-tier-app-v_a_gonzalez_lopez_accenture_com
+- hosts: tag_instance_filter_three_tier_app_v_a_gonzalez_lopez_accenture_com
   gather_facts: false
   tasks:
   - name: Check the instances status
