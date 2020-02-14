@@ -1,8 +1,4 @@
 ---
-
-# Crea nuevas instancias de servidor y las conecta a una red.
-# Pasa metadatos a la instancia:
-
 - name: Create new server instances and attaches them a network and passes metadata to the instance
   os_server:
     cloud: ospcloud
@@ -26,9 +22,7 @@
   with_subelements:
     - "{{osp_servers}}"
     - meta
-
-# Agrega la IP Flotante a los servidores:    
-
+    
 - name: Add floating IP to Servers
   os_floating_ip:
     cloud: ospcloud
@@ -46,8 +40,6 @@
     cloud: ospcloud
     region_name: RegionOne
   register: r_os_servers
-
-# Espera a que el servidor esté disponible:
 
 - name: Wait for server to be available
   wait_for:
