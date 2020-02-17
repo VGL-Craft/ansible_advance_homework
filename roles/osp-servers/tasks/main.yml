@@ -1,4 +1,5 @@
 ---
+
 - name: Create new server instances and attaches them a network and passes metadata to the instance
   os_server:
     cloud: ospcloud
@@ -34,13 +35,17 @@
     timeout: 180
   register: instancefloatingip
   with_dict: "{{osp_servers}}"
-
+ 
+ 
+ 
 - name: Fetch Instance Info
   os_server_facts:
     cloud: ospcloud
     region_name: RegionOne
   register: r_os_servers
-
+ 
+ 
+ 
 - name: Wait for server to be available
   wait_for:
     host: "{{ item.public_v4 }}"
@@ -50,7 +55,9 @@
   delegate_to: "{{ inventory_hostname }}"
   with_items:
     - "{{ r_os_servers.ansible_facts.openstack_servers }}"
-
+ 
+ 
+ 
 - name: Add host
   add_host:
     name: "{{ item.public_v4 }}"
