@@ -1,13 +1,5 @@
-# Playbook que crea las plantillas de trabajo y la plantilla del flujo de trabajo de la Torre de Ansible
-# para automatizar el proceso de aprovisionamiento de QA (Quality Assurance) y los entornos de producción.
-# El flujo de trabajo (workflow) incluye la implementación y la prueba de la APP a tres niveles.
-
-# The Playbooks to provision the QA and production environments and deploy the three-tier application must reflect the job templates and workflow template.
-# For running jobs on the QA environment, your job templates must associate the osp instance group for using the isolated node.
-
 - hosts: localhost
   gather_facts: false 
   become: yes 
   roles:
-    # Llama al role config-tower mediante el cual se crea un inventario dinámico de la Torre de Ansible, la plantilla de trabajo y tareas de configuración.
     - config-tower

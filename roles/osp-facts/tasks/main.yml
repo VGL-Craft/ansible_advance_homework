@@ -1,6 +1,4 @@
 ---
-
-# Generate in memory inventory for OSP instances role.  
 # tasks file for osp-facts
 
    - name: Fetch Instance Info

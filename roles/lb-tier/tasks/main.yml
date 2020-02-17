@@ -1,7 +1,4 @@
 ---
-
-# Habilita HAProxy (haproxy.cfg.2)
-
 - name: install HAProxy
   yum:
     name=haproxy state=latest

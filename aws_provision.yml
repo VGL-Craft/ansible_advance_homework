@@ -1,8 +1,4 @@
 ---
-
-# Ordena el script order_svc.sh para aprovisionar el entorno de producción en AWS.
-# Configura las credenciales y ejecuta el script de shell para implementar el entorno de producción credential.rc 
-
 - hosts: workstation
   become: true
   gather_facts: false
