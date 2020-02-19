@@ -1,3 +1,7 @@
+# Fetch GUIDkey.pem from bastion of Three tier APP env, and create machine credential to connect to AWS instances.
+
+---
+
 - hosts: tag_AnsibleGroup_bastions
   gather_facts: true
   become: true

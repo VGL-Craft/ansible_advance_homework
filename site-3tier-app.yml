@@ -1,10 +1,34 @@
+# Implementación de la APP a tres niveles. 
+
+# Llamada a los siguientes roles:
+# - osp-facts: 
+#	Generate in memory inventory for OSP instances role.
+#	Inventario osp.
+# - base_config: 
+#	Plantilla de repositorio a tres niveles (extension.repo). 
+#	Setup yum repo and base packages role.
+#	templates/open-three-tier-app.repo ([rhel-7-server...]).
+# - lb-tier:
+#	Install HA proxy role (tasks/main: haproxy.cfg.j2).
+# - app-tier:
+# 	Install APP Server role.
+#	Aplicación agregadada a tres niveles.
+#	Instalación Tomcat
+#	Tomcat implementado Ansible (index.html.j2).
+# - db-tier:
+#	Install PostgreSQL Server for database role.
+#	Aplicación agregada a tres niveles.
+
+# (Template: 3tier app deployment on QA Env and 3 tier app on Prod).
+
+---
+
 - hosts: workstation
   gather_facts: true 
   roles:
   - name: osp-facts
 
 # Setup front-end load balancer tier
-
 
 - name: setup load-balancer tier
   hosts: frontends

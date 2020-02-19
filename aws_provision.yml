@@ -1,4 +1,13 @@
+# (Template: Provision Prod Env) 
+# Ordena el script order_ svc.sh (tmp/aws-jq-vars.yml) para aprovisionar el entorno de producción en AWS.
+# Configuración de las credenciales y ejecución del script de shell para la implementación del entorno de producción: credential.rc.
+
+# Provision instances on AWS using order_svc.sh script for the production environment.
+# Deploy the application in the production environment.
+# Run the smoke test to verify the application (Template: Smoke test Prod Env). 
+
 ---
+
 - hosts: workstation
   become: true
   gather_facts: false

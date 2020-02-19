@@ -1,3 +1,10 @@
+# Llamada al role:
+# - osp-instance-delete:
+#	Delete osp (OpenStack) instances role.
+#	(taks/main): Obtención de información sobre la instancia y eliminación de la instancia. 	
+
+---
+
 - hosts: workstation
   become: yes
   roles:

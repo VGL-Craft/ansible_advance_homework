@@ -1,3 +1,9 @@
+# Playbook que prueba la APP a tres nieveles en AWS (Amazon Web Services).
+
+# (Template: Smoke test Prod Env). 
+
+---
+
 - hosts: tag_AnsibleGroup_frontends
   gather_facts: false
   tasks:

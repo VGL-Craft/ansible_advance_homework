@@ -1,3 +1,23 @@
+# The Playbook to provision the QA (Quality Assurance) and production environments and deploy the three-tier application must 
+# reflect the job templates and workflow template.
+# Playbook que sirve para crear las plantillas de trabajo y la plantilla del flujo de trabajo de la Torre de Ansible.
+
+# Llamada al role:
+# - config-tower:
+#	* ec2_dynamic.yml: (AMAZON EC2 instances`facts) Crea un inventario dinámico en la Torre de Ansible. tag:instance-filter= three-tier-app-[EMAIL-ID].
+#	* job_template.yml: Crea las plantillas de trabajo.
+#	* pre-config-tower.yml: Tareas previas a la configuración.
+#	* workflow_template.yml: Genera el flujo de trabajo desde el playbook workflow.yml.
+#	* post-config-tower.yml: Trabajo de configuración posterior.
+
+# For running jobs on the QA environment, your job templates must associate the osp instance group for using the isolated node.
+
+# Cuando se ejecuta con éxito site-config-tower.yml se crea una plantilla de flujo de trabajo (workflow_template) para automatizar el proceso de 
+# aprovisionamiento del QA (Garantía de calidad) y los entornos de producción.   				 		
+# Flujo de Trabajo: Implementación + Prueba APP a tres niveles.
+
+---
+
 - hosts: localhost
   gather_facts: false 
   become: yes 

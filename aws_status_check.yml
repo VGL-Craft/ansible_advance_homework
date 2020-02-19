@@ -1,3 +1,11 @@
+# Se comprueban las instancias de AWS activas o no activas.
+# (Template: Check the status of AWS instances).
+
+# El nombre del filtro de instancias dado en el Inventario Three tier inventory (en la Torre de Ansible) debe de coincidir con el siguiente nombre:
+# v_a_gonzalez_lopez_accenture_com  
+
+---
+
 - hosts: tag_instance_filter_three_tier_app_v_a_gonzalez_lopez_accenture_com
   gather_facts: false
   tasks:

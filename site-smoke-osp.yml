@@ -1,6 +1,15 @@
+# Prueba de humo sobre el entorno de calidad (QA) para probar la APP a tres niveles en OSP (OpenStack).
+
+# En caso de que dicha prueba falle, ejecutar el Playbook site-osp-delete.yml para destruir el QA en RHOSP (Red Hat OpenStack Platform). 
+
+# (Template: Smoke test QA Env) 
+
+---
+
 - hosts: workstation
   gather_facts: false
   tasks:
+
   - name: OpenStack servers
     os_server_facts:
      cloud: ospcloud
@@ -9,15 +18,11 @@
     tags:
       - osp.smoke
 
- 
-
   - name: Curl website
     uri:
       url: "http://{{ openstack_info.ansible_facts.openstack_servers[0].public_v4}}"
       return_content: yes
     register: webpage
-
- 
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:

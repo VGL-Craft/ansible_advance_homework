@@ -1,3 +1,17 @@
+# Playbook to provision RHOSP (RED Hat OpenStack Platform) instances to support the deployment of a three-tier application using the network 
+# details and flavor specified in the previous section.
+ 
+# (Template: Provision QA Env).
+
+# Llamada al role:
+# - osp-servers:
+#	Provision OSP instances role.
+#	Dicho role crea nuevas instancias de servidor y las conecta a una red. Pasa metadatos a la isntancia.
+#	Agrega la IP Flotante a los servidores.
+#	Espera a que el servidor esté disponible.
+
+---
+
 - hosts: workstation
   become: yes
   roles:
